@@ -35,5 +35,44 @@ def mongraphique():
 def monhistogramme():
     return render_template("Histogramme.html")
   
+@app.route('/extract-minutes/<date_string>')
+def extract_minutes(date_string):
+    date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
+    minutes = date_object.minute
+    return jsonify({'minutes': minutes})
+
+
+
+@app.route('/commits-data/')
+def commits_data():
+    url = 'https://api.github.com/repos/BouchraRH/5MCSI_Metriques/commits'
+
+    
+    req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    response = urlopen(req)
+    raw_content = response.read()
+    commits_json = json.loads(raw_content.decode('utf-8'))
+
+    minutes_count = {str(m): 0 for m in range(60)}
+
+    for commit_item in commits_json:
+        date_string = commit_item.get('commit', {}).get('author', {}).get('date')
+        if not date_string:
+            continue
+
+        date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
+        minute = str(date_object.minute)
+        minutes_count[minute] += 1
+
+    results = [{'minute': int(k), 'count': v} for k, v in minutes_count.items()]
+    results.sort(key=lambda x: x['minute'])
+
+    return jsonify(results=results)
+
+
+@app.route('/commits/')
+def commits():
+    return render_template('commits.html')
+  
 if __name__ == "__main__":
   app.run(debug=True)
