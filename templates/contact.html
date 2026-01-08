@@ -1,183 +1,236 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact</title>
-  <style>
-    body{
-      margin:0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #f6f8ff, #eef2ff);
-      color:#1f2937;
-    }
-    .container{
-      max-width: 900px;
-      margin: 60px auto;
-      padding: 0 16px;
-    }
-    .card{
-      background:#fff;
-      border-radius: 18px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-      overflow:hidden;
-      display:grid;
-      grid-template-columns: 1.1fr 1fr;
-    }
-    .left{
-      padding: 36px;
-      background: radial-gradient(circle at top left, #dbeafe, #ffffff 60%);
-    }
-    .right{
-      padding: 36px;
-      background:#ffffff;
-    }
-    h1{
-      margin: 0 0 10px 0;
-      font-size: 28px;
-    }
-    p{
-      margin: 0 0 18px 0;
-      line-height: 1.5;
-      color:#4b5563;
-    }
-    .badge{
-      display:inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background:#eef2ff;
-      color:#4338ca;
-      font-weight: 700;
-      font-size: 12px;
-      margin-bottom: 14px;
-    }
-    .info{
-      margin-top: 22px;
-      padding: 14px;
-      border-radius: 14px;
-      background:#f9fafb;
-      border:1px solid #e5e7eb;
-      font-size: 14px;
-    }
-    label{
-      display:block;
-      font-weight: 700;
-      font-size: 13px;
-      margin: 14px 0 6px;
-      color:#374151;
-    }
-    input, textarea{
-      width:100%;
-      padding: 12px 12px;
-      border-radius: 12px;
-      border: 1px solid #e5e7eb;
-      outline: none;
-      font-size: 14px;
-      background:#fff;
-    }
-    input:focus, textarea:focus{
-      border-color:#6366f1;
-      box-shadow: 0 0 0 4px rgba(99,102,241,0.15);
-    }
-    textarea{
-      min-height: 130px;
-      resize: vertical;
-    }
-    .row{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .actions{
-      display:flex;
-      gap: 10px;
-      margin-top: 18px;
-      align-items:center;
-    }
-    button{
-      border:none;
-      padding: 12px 14px;
-      border-radius: 12px;
-      font-weight: 800;
-      cursor:pointer;
-      font-size: 14px;
-    }
-    .btn-primary{
-      background:#4f46e5;
-      color:#fff;
-    }
-    .btn-primary:hover{ filter: brightness(0.95); }
-    .btn-secondary{
-      background:#f3f4f6;
-      color:#111827;
-    }
-    .small{
-      font-size: 12px;
-      color:#6b7280;
-      margin-top: 10px;
-    }
-    .footer{
-      margin-top: 14px;
-      font-size: 12px;
-      color:#6b7280;
-    }
-    a{ color:#4f46e5; text-decoration:none; }
-    a:hover{ text-decoration:underline; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Projet Métriques</title>
 
-    @media (max-width: 800px){
-      .card{ grid-template-columns: 1fr; }
-    }
-  </style>
+<style>
+:root{
+  --bg: #0f172a;
+  --card: rgba(255,255,255,0.08);
+  --border: rgba(255,255,255,0.18);
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family: "Inter", system-ui, sans-serif;
+  background:
+    radial-gradient(circle at 20% 10%, #1e3a8a, transparent 40%),
+    radial-gradient(circle at 80% 90%, #0ea5e9, transparent 35%),
+    var(--bg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--text);
+}
+
+.wrapper{
+  width:100%;
+  max-width:760px;
+  padding:24px;
+}
+
+.card{
+  backdrop-filter: blur(16px);
+  background: var(--card);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:40px;
+  box-shadow: 0 40px 80px rgba(0,0,0,.35);
+  animation: fadeIn .6s ease-out;
+}
+
+@keyframes fadeIn{
+  from{ opacity:0; transform:translateY(20px); }
+  to{ opacity:1; transform:none; }
+}
+
+header{
+  margin-bottom:30px;
+}
+
+.tag{
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+  background:rgba(56,189,248,.15);
+  color:var(--accent);
+  margin-bottom:14px;
+}
+
+h1{
+  margin:0 0 10px;
+  font-size:32px;
+}
+
+header p{
+  margin:0;
+  color:var(--muted);
+  max-width:520px;
+}
+
+form{
+  margin-top:32px;
+  display:grid;
+  gap:18px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+label{
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:6px;
+  display:block;
+}
+
+input, textarea{
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+  font-size:14px;
+}
+
+input::placeholder,
+textarea::placeholder{
+  color:#64748b;
+}
+
+input:focus,
+textarea:focus{
+  outline:none;
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(56,189,248,.25);
+}
+
+textarea{
+  min-height:140px;
+  resize:none;
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  margin-top:10px;
+}
+
+button{
+  flex:1;
+  padding:14px;
+  border-radius:14px;
+  font-weight:800;
+  border:none;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.send{
+  background:linear-gradient(135deg, #38bdf8, #2563eb);
+  color:#020617;
+}
+
+.send:hover{
+  filter:brightness(1.05);
+}
+
+.reset{
+  background:rgba(255,255,255,.08);
+  color:var(--text);
+}
+
+.note{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:14px;
+  text-align:center;
+}
+
+footer{
+  margin-top:26px;
+  text-align:center;
+  font-size:12px;
+}
+
+footer a{
+  color:var(--accent);
+  text-decoration:none;
+}
+
+footer a:hover{
+  text-decoration:underline;
+}
+
+@media(max-width:700px){
+  .grid{ grid-template-columns:1fr; }
+  .card{ padding:28px; }
+}
+</style>
 </head>
 
 <body>
-  <div class="container">
-    <div class="card">
-      <div class="left">
-        <div class="badge">Projet Métriques • Contact</div>
-        <h1>Me contacter</h1>
-        <p>Laissez-moi votre prénom, votre nom et un message. (L’envoi n’est pas enregistré dans cet exercice, c’est uniquement pour le design.)</p>
 
-        <div class="info">
-          ✅ Page réalisée avec Flask + templates<br/>
-          ✅ Champs : Prénom, Nom, Message<br/>
-          ✅ Design responsive (mobile / PC)
+<div class="wrapper">
+  <div class="card">
+    <header>
+      <div class="tag">Projet Métriques</div>
+      <h1>Formulaire de contact</h1>
+      <p>
+        Interface de démonstration réalisée en Flask.
+        L’envoi affiche simplement une confirmation.
+      </p>
+    </header>
+
+    <form>
+      <div class="grid">
+        <div>
+          <label>Prénom</label>
+          <input type="text" placeholder="Ex : Mohammed" required>
         </div>
-
-        <div class="footer">
-          Retour à l’accueil : <a href="/">/</a>
+        <div>
+          <label>Nom</label>
+          <input type="text" placeholder="Ex : Tir" required>
         </div>
       </div>
 
-      <div class="right">
-        <form>
-          <div class="row">
-            <div>
-              <label for="prenom">Prénom</label>
-              <input id="prenom" name="prenom" type="text" placeholder="Ex : Bouchra" required />
-            </div>
-            <div>
-              <label for="nom">Nom</label>
-              <input id="nom" name="nom" type="text" placeholder="Ex : Rhilane" required />
-            </div>
-          </div>
-
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Écrivez votre message ici..." required></textarea>
-
-          <div class="actions">
-            <button class="btn-primary" type="button" onclick="alert('Merci ! (Démo) Le message n\\'est pas enregistré dans cet exercice.')">
-              Envoyer
-            </button>
-            <button class="btn-secondary" type="reset">Effacer</button>
-          </div>
-
-          <div class="small">
-            Astuce : ce bouton “Envoyer” affiche juste une confirmation (pas de stockage).
-          </div>
-        </form>
+      <div>
+        <label>Message</label>
+        <textarea placeholder="Votre message..." required></textarea>
       </div>
-    </div>
+
+      <div class="actions">
+        <button class="send" type="button"
+          onclick="alert('Message envoyé (démo uniquement)')">
+          Envoyer
+        </button>
+        <button class="reset" type="reset">Réinitialiser</button>
+      </div>
+
+      <div class="note">
+        Aucun message n’est stocké dans cet exercice.
+      </div>
+    </form>
+
+    <footer>
+      Retour accueil — <a href="/">/</a>
+    </footer>
   </div>
+</div>
+
 </body>
 </html>
